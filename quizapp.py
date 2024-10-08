@@ -83,3 +83,14 @@ def main():
     st.title("Quiz Generator App")
     text_content = st.text_area("Paste the context text here")
     quiz_level= st.selectbox("select quiz level:",["Easy","Medium","Hard"])
+    
+    quiz_level_lower = quiz_level.lower()
+    
+    if st.button("Generate Quiz"):
+        questions = fetch_questions(text_content=text_content,quiz_level=quiz_level_lower)
+        
+        selectd_options = []
+        correct_answers = []
+        for question in questions:
+            options= list(questions["options"].values())
+            
