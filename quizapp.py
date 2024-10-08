@@ -72,3 +72,14 @@ def fetch_questions(text_content, quiz_level):
                                               frequency_penalty=0,
                                               presence_penalty=0
                                               )
+    
+    extracted_response = response.choices[0].message.content
+    
+    print(extracted_response)
+    
+    return json.loads(extracted_response).get("mcqs", [])
+
+def main():
+    st.title("Quiz Generator App")
+    text_content = st.text_area("Paste the context text here")
+    quiz_level= st.selectbox("select quiz level:",["Easy","Medium","Hard"])
